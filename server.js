@@ -1,20 +1,38 @@
+// Corrected server.js code
+
 const express = require('express');
-const http = require('http');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Deprecated req.connection logic replaced
-app.use((req, res, next) => {
-  req.socket = req.connection; // Ensure to use req.socket instead of req.connection
-  next();
-});
+// Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// Sample route
+// MongoDB connection
+mongoose.connect('mongodb://localhost:27017/petition', { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB connected.'))
+  .catch(err => console.log('MongoDB connection error:', err));
+
+// Routes
 app.get('/', (req, res) => {
-  res.send('Hello, World!');
+    res.send('Welcome to the Petition API');
 });
 
-http.createServer(app).listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.post('/sign', (req, res) => {
+    const { name, email } = req.body;
+
+    if (!name || !email) {
+        return res.status(400).send('Name and email are required.');
+    }
+
+    // Save petition signatory logic (mock)
+    console.log(`Signature received: ${name}, ${email}`);
+    res.status(200).send('Thank you for signing the petition!');
+});
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
