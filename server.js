@@ -19,7 +19,11 @@ pool.on('error', (err) => {
     console.error('Unexpected error on idle client', err);
 });
 
-app.use(cors());
+app.use(cors({
+       origin: ['https://julisha-petition.vercel.app'],
+       credentials: true
+   }));
+
 app.use(express.json());
 
 const submitLimiter = rateLimit({
