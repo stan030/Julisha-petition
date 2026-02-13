@@ -19,6 +19,7 @@ app.use(cors({
        origin: ['https://julisha-petition.vercel.app'],
        credentials: true
    }));
+...
 app.use(express.json());
 
 const submitLimiter = rateLimit({
