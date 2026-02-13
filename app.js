@@ -1,5 +1,5 @@
 // Configuration
-const API_URL = 'http://localhost:3000/api'; // Change to your deployed API URL
+const API_URL = 'https://julisha-api.onrender.com/api'; // Change to your deployed API URL
 const PUBLIC_SALT = 'JULISHA_KENYA_2026_PUBLIC_SALT';
 
 // State Management
