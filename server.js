@@ -15,11 +15,7 @@ const pool = new Pool({
     ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
 });
 
-app.use(cors({
-       origin: ['https://julisha-petition.vercel.app'],
-       credentials: true
-   }));
-
+app.use(cors());
 app.use(express.json());
 
 const submitLimiter = rateLimit({
