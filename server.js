@@ -1,5 +1,3 @@
-// server.js - Backend API for Julisha Petition Platform
-
 const express = require('express');
 const cors = require('cors');
 const { Pool } = require('pg');
@@ -10,92 +8,24 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Server-side secret salt (KEEP THIS SECRET!)
-const SERVER_SALT = process.env.SERVER_SALT || 'CHANGE_THIS_IN_PRODUCTION_' + crypto.randomBytes(32).toString('hex');
+const SERVER_SALT = process.env.SERVER_SALT || crypto.randomBytes(32).toString('hex');
 
-// Database Configuration
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
 });
 
-// Middleware
-app.use(cors({
-       origin: ['https://julisha-petition.vercel.app'],
-       credentials: true
-   }));
-```
-   (Use YOUR Vercel URL!)
-6. Tap **"Commit changes"**
-
-### 5.2 Redeploy Backend
-1. Go to Render app
-2. Tap on your `julisha-api` service
-3. Tap **"Manual Deploy"** → **"Deploy latest commit"**
-4. ⏳ Wait 3 minutes
-
----
-
-## **STEP 6: Test Everything!** (5 min)
-
-### 6.1 Visit Your Site
-1. Open: `https://julisha-petition.vercel.app` (your URL)
-2. ✅ Page should load beautifully
-3. ✅ Counter shows: "0 / 1,000,000"
-
-### 6.2 Submit a Test Vote
-1. Tap **"Verify by ID"**
-2. Enter test ID: `12345678`
-3. Select County: **"Nairobi"**
-4. Check consent box
-5. Tap **"Register My Vote"**
-6. ✅ Should see success screen!
-7. ✅ Counter updates to "1"!
-8. ✅ WhatsApp share button appears
-
-### 6.3 Test Admin Dashboard
-1. Visit: `https://julisha-petition.vercel.app/admin.html`
-2. Enter the `ADMIN_SECRET` you saved earlier
-3. Tap **"Access Dashboard"**
-4. ✅ Should see vote statistics!
-
----
-
-## **STEP 7: Share Your Platform!** 🚀
-
-### WhatsApp Message:
-```
-🇰🇪 Habari! 
-
-I've created a petition platform for Kenyans to demand accountability.
-
-✅ 100% Private (no data stored)
-✅ Takes 30 seconds to sign
-✅ Constitutional right (Article 257)
-
-Sign here:
-https://julisha-petition.vercel.app
-
-Share with your networks! 🙏;
+app.use(cors());
 app.use(express.json());
 
-// Rate Limiting (Prevent Spam/DDoS)
 const submitLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 3, // Max 3 submissions per IP per 15 minutes
+    windowMs: 15 * 60 * 1000,
+    max: 3,
     message: { success: false, message: 'Too many submission attempts. Please try again later.' }
 });
 
-const verifyLimiter = rateLimit({
-    windowMs: 5 * 60 * 1000, // 5 minutes
-    max: 5, // Max 5 verification attempts
-    message: { success: false, message: 'Too many verification attempts. Please wait a few minutes.' }
-});
-
-// Database Initialization
 async function initializeDatabase() {
     try {
-        // Create votes table
         await pool.query(`
             CREATE TABLE IF NOT EXISTS votes (
                 id SERIAL PRIMARY KEY,
@@ -108,18 +38,8 @@ async function initializeDatabase() {
                 verification_token VARCHAR(20)
             );
         `);
-
-        // Create index for faster lookups
-        await pool.query(`
-            CREATE INDEX IF NOT EXISTS idx_hashed_identifier ON votes(hashed_identifier);
-        `);
-
-        // Create index for county statistics
-        await pool.query(`
-            CREATE INDEX IF NOT EXISTS idx_county ON votes(county);
-        `);
-
-        // Create verification codes table (for phone verification)
+        await pool.query(`CREATE INDEX IF NOT EXISTS idx_hashed_identifier ON votes(hashed_identifier);`);
+        await pool.query(`CREATE INDEX IF NOT EXISTS idx_county ON votes(county);`);
         await pool.query(`
             CREATE TABLE IF NOT EXISTS verification_codes (
                 id SERIAL PRIMARY KEY,
@@ -130,43 +50,30 @@ async function initializeDatabase() {
                 expires_at TIMESTAMP NOT NULL
             );
         `);
-
-        console.log('✅ Database initialized successfully');
+        console.log('Database initialized successfully');
     } catch (error) {
-        console.error('❌ Database initialization error:', error);
+        console.error('Database initialization error:', error);
         process.exit(1);
     }
 }
 
-// Helper: Double Hash (Add server-side salt)
 function doubleHash(clientHash) {
-    return crypto.createHash('sha256')
-        .update(clientHash + SERVER_SALT)
-        .digest('hex');
+    return crypto.createHash('sha256').update(clientHash + SERVER_SALT).digest('hex');
 }
 
-// Helper: Hash IP Address
 function hashIP(ip) {
-    return crypto.createHash('sha256')
-        .update(ip + SERVER_SALT)
-        .digest('hex');
+    return crypto.createHash('sha256').update(ip + SERVER_SALT).digest('hex');
 }
 
-// Helper: Generate 4-digit verification code
 function generateVerificationCode() {
     return Math.floor(1000 + Math.random() * 9000).toString();
 }
 
-// Helper: Check if identifier already voted
 async function hasVoted(hashedIdentifier) {
-    const result = await pool.query(
-        'SELECT id FROM votes WHERE hashed_identifier = $1',
-        [hashedIdentifier]
-    );
+    const result = await pool.query('SELECT id FROM votes WHERE hashed_identifier = $1', [hashedIdentifier]);
     return result.rows.length > 0;
 }
 
-// Helper: Check IP submission count
 async function getIPSubmissionCount(ipHash) {
     const twentyFourHoursAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
     const result = await pool.query(
@@ -176,19 +83,14 @@ async function getIPSubmissionCount(ipHash) {
     return parseInt(result.rows[0].count);
 }
 
-// API Routes
-
-// Health Check
 app.get('/api/health', (req, res) => {
     res.json({ success: true, message: 'Server is running' });
 });
 
-// Get Vote Count
 app.get('/api/votes/count', async (req, res) => {
     try {
         const result = await pool.query('SELECT COUNT(*) FROM votes');
         const count = parseInt(result.rows[0].count);
-        
         res.json({
             success: true,
             count: count,
@@ -197,14 +99,10 @@ app.get('/api/votes/count', async (req, res) => {
         });
     } catch (error) {
         console.error('Error getting vote count:', error);
-        res.status(500).json({
-            success: false,
-            message: 'Error retrieving vote count'
-        });
+        res.status(500).json({ success: false, message: 'Error retrieving vote count' });
     }
 });
 
-// Get County Statistics
 app.get('/api/votes/counties', async (req, res) => {
     try {
         const result = await pool.query(`
@@ -213,38 +111,20 @@ app.get('/api/votes/counties', async (req, res) => {
             GROUP BY county
             ORDER BY count DESC
         `);
-        
-        res.json({
-            success: true,
-            counties: result.rows
-        });
+        res.json({ success: true, counties: result.rows });
     } catch (error) {
         console.error('Error getting county stats:', error);
-        res.status(500).json({
-            success: false,
-            message: 'Error retrieving county statistics'
-        });
+        res.status(500).json({ success: false, message: 'Error retrieving county statistics' });
     }
 });
 
-// Phone Verification - Send Code
-app.post('/api/votes/verify-phone', verifyLimiter, async (req, res) => {
+app.post('/api/votes/verify-phone', async (req, res) => {
     try {
         const { phoneNumber } = req.body;
-
         if (!phoneNumber) {
-            return res.status(400).json({
-                success: false,
-                message: 'Phone number is required'
-            });
+            return res.status(400).json({ success: false, message: 'Phone number is required' });
         }
-
-        // Hash the phone number
-        const phoneHash = crypto.createHash('sha256')
-            .update(phoneNumber + SERVER_SALT)
-            .digest('hex');
-
-        // Check if already voted
+        const phoneHash = crypto.createHash('sha256').update(phoneNumber + SERVER_SALT).digest('hex');
         const alreadyVoted = await hasVoted(phoneHash);
         if (alreadyVoted) {
             return res.status(400).json({
@@ -252,60 +132,33 @@ app.post('/api/votes/verify-phone', verifyLimiter, async (req, res) => {
                 message: 'This phone number has already been used to sign the petition.'
             });
         }
-
-        // Generate verification code
         const code = generateVerificationCode();
-        const expiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
-
-        // Store verification code
+        const expiresAt = new Date(Date.now() + 10 * 60 * 1000);
         await pool.query(
             'INSERT INTO verification_codes (phone_hash, code, expires_at) VALUES ($1, $2, $3)',
             [phoneHash, code, expiresAt]
         );
-
-        // In production, send SMS here using Africa's Talking API
-        // await sendSMS(phoneNumber, `Your Julisha Petition verification code is: ${code}`);
-
-        // For demo purposes, return the code (REMOVE IN PRODUCTION!)
         res.json({
             success: true,
             message: 'Verification code sent successfully',
-            code: code // REMOVE THIS IN PRODUCTION!
+            code: code
         });
-
     } catch (error) {
         console.error('Phone verification error:', error);
-        res.status(500).json({
-            success: false,
-            message: 'Error sending verification code'
-        });
+        res.status(500).json({ success: false, message: 'Error sending verification code' });
     }
 });
 
-// Submit Vote
 app.post('/api/votes/submit', submitLimiter, async (req, res) => {
     try {
         const { type, identifier, verificationCode, county, comment } = req.body;
-
-        // Validation
         if (!type || !identifier || !county) {
-            return res.status(400).json({
-                success: false,
-                message: 'Missing required fields'
-            });
+            return res.status(400).json({ success: false, message: 'Missing required fields' });
         }
-
         if (!['id', 'phone'].includes(type)) {
-            return res.status(400).json({
-                success: false,
-                message: 'Invalid verification type'
-            });
+            return res.status(400).json({ success: false, message: 'Invalid verification type' });
         }
-
-        // Double hash the identifier (add server-side salt)
         const finalHash = doubleHash(identifier);
-
-        // Check if already voted
         const alreadyVoted = await hasVoted(finalHash);
         if (alreadyVoted) {
             return res.status(400).json({
@@ -313,42 +166,25 @@ app.post('/api/votes/submit', submitLimiter, async (req, res) => {
                 message: 'You have already signed this petition. Thank you for your support!'
             });
         }
-
-        // For phone verification, validate the code
         if (type === 'phone') {
             if (!verificationCode) {
-                return res.status(400).json({
-                    success: false,
-                    message: 'Verification code is required'
-                });
+                return res.status(400).json({ success: false, message: 'Verification code is required' });
             }
-
-            // Check verification code
             const codeResult = await pool.query(
                 `SELECT id FROM verification_codes 
                  WHERE phone_hash = $1 AND code = $2 AND used = FALSE AND expires_at > NOW()`,
                 [finalHash, verificationCode]
             );
-
             if (codeResult.rows.length === 0) {
                 return res.status(400).json({
                     success: false,
                     message: 'Invalid or expired verification code'
                 });
             }
-
-            // Mark code as used
-            await pool.query(
-                'UPDATE verification_codes SET used = TRUE WHERE id = $1',
-                [codeResult.rows[0].id]
-            );
+            await pool.query('UPDATE verification_codes SET used = TRUE WHERE id = $1', [codeResult.rows[0].id]);
         }
-
-        // Hash IP address
         const clientIP = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
         const ipHash = hashIP(clientIP);
-
-        // Check IP submission count (anti-spam)
         const ipCount = await getIPSubmissionCount(ipHash);
         if (ipCount >= 3) {
             return res.status(429).json({
@@ -356,51 +192,33 @@ app.post('/api/votes/submit', submitLimiter, async (req, res) => {
                 message: 'Too many submissions from this network. Please try again later.'
             });
         }
-
-        // Generate verification token (for potential future verification)
         const verificationToken = 'VERIFY-' + crypto.randomBytes(4).toString('hex').toUpperCase();
-
-        // Insert vote
         await pool.query(
             `INSERT INTO votes (hashed_identifier, verification_type, county, comment, ip_hash, verification_token)
              VALUES ($1, $2, $3, $4, $5, $6)`,
             [finalHash, type, county, comment || null, ipHash, verificationToken]
         );
-
-        // Get new total count
         const countResult = await pool.query('SELECT COUNT(*) FROM votes');
         const totalVotes = parseInt(countResult.rows[0].count);
-
         res.json({
             success: true,
             message: 'Your voice has been recorded!',
             totalVotes: totalVotes,
             verificationToken: verificationToken
         });
-
     } catch (error) {
         console.error('Vote submission error:', error);
-        res.status(500).json({
-            success: false,
-            message: 'Error recording your vote. Please try again.'
-        });
+        res.status(500).json({ success: false, message: 'Error recording your vote. Please try again.' });
     }
 });
 
-// Admin: Get Recent Votes (with privacy protection)
 app.get('/api/admin/recent-votes', async (req, res) => {
     try {
-        // Basic auth (in production, use proper authentication)
         const authHeader = req.headers.authorization;
         const adminSecret = process.env.ADMIN_SECRET || 'change_this_secret';
-        
         if (authHeader !== `Bearer ${adminSecret}`) {
-            return res.status(401).json({
-                success: false,
-                message: 'Unauthorized'
-            });
+            return res.status(401).json({ success: false, message: 'Unauthorized' });
         }
-
         const result = await pool.query(`
             SELECT 
                 verification_type,
@@ -411,35 +229,18 @@ app.get('/api/admin/recent-votes', async (req, res) => {
             ORDER BY created_at DESC
             LIMIT 50
         `);
-
-        res.json({
-            success: true,
-            votes: result.rows
-        });
+        res.json({ success: true, votes: result.rows });
     } catch (error) {
         console.error('Error fetching recent votes:', error);
-        res.status(500).json({
-            success: false,
-            message: 'Error retrieving votes'
-        });
+        res.status(500).json({ success: false, message: 'Error retrieving votes' });
     }
 });
 
-// Start Server
 async function startServer() {
     try {
         await initializeDatabase();
-        
         app.listen(PORT, () => {
-            console.log(`
-╔═══════════════════════════════════════╗
-║   🇰🇪 JULISHA PETITION API SERVER     ║
-║                                       ║
-║   Port: ${PORT}                       ║
-║   Environment: ${process.env.NODE_ENV || 'development'}          ║
-║   Status: ✅ RUNNING                  ║
-╚═══════════════════════════════════════╝
-            `);
+            console.log(`Julisha API running on port ${PORT}`);
         });
     } catch (error) {
         console.error('Failed to start server:', error);
