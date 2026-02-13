@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Julisha Petition - Voice of 1 Million Kenyans</title>
+    <meta name="description" content="Join 1 million Kenyans petitioning for economic accountability under Article 257">
+    
+    <!-- Fonts: Bold display + Clean body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --kenya-red: #BB0000;
+            --kenya-green: #006B3F;
+            --kenya-black: #000000;
+            --gold: #FDB913;
+            --white: #FFFFFF;
+            --grey-light: #F5F5F5;
+            --grey-dark: #2A2A2A;
+            --shadow: rgba(0, 0, 0, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: linear-gradient(135deg, var(--kenya-green) 0%, var(--kenya-black) 100%);
+            color: var(--grey-dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Animated Background Pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(255, 255, 255, 0.02) 10px,
+                    rgba(255, 255, 255, 0.02) 20px
+                );
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 20px 20px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+        
+        .logo-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: var(--white);
+            letter-spacing: 0.05em;
+            text-shadow: 4px 4px 0 var(--kenya-red);
+            margin-bottom: 10px;
+            line-height: 0.9;
+        }
+        
+        .tagline {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: var(--gold);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+        
+        /* Live Counter */
+        .counter-section {
+            background: linear-gradient(135deg, var(--kenya-red) 0%, #8B0000 100%);
+            border-radius: 20px;
+            padding: 40px 20px;
+            margin: 30px 0;
+            box-shadow: 0 10px 40px var(--shadow);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        
+        .counter-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        .counter-label {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 15px;
+        }
+        
+        .counter-display {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(3rem, 10vw, 5rem);
+            color: var(--white);
+            letter-spacing: 0.05em;
+            text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .counter-goal {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 10px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            margin-top: 20px;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold) 0%, var(--white) 100%);
+            border-radius: 10px;
+            transition: width 1s ease-out;
+            box-shadow: 0 0 10px var(--gold);
+        }
+        
+        /* Main Content Grid */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        @media (min-width: 968px) {
+            .main-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        /* Card Styles */
+        .card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 35px;
+            box-shadow: 0 8px 30px var(--shadow);
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+        
+        .card-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2.2rem;
+            color: var(--kenya-red);
+            margin-bottom: 20px;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Info Section */
+        .evils-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .evils-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid #E0E0E0;
+            line-height: 1.6;
+        }
+        
+        .evils-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .evil-title {
+            font-weight: 700;
+            color: var(--kenya-red);
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .legal-notice {
+            background: var(--grey-light);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            border-left: 4px solid var(--kenya-green);
+        }
+        
+        .legal-notice strong {
+            color: var(--kenya-green);
+        }
+        
+        /* Form Section */
+        .form-section {
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+        
+        .verification-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .tab-btn {
+            flex: 1;
+            padding: 15px 20px;
+            border: 2px solid var(--kenya-green);
+            background: var(--white);
+            color: var(--kenya-green);
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .tab-btn.active {
+            background: var(--kenya-green);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(0, 107, 63, 0.3);
+        }
+        
+        .tab-btn:hover:not(.active) {
+            background: rgba(0, 107, 63, 0.1);
+        }
+        
+        .form-content {
+            display: none;
+        }
+        
+        .form-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--grey-dark);
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #E0E0E0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Work Sans', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--kenya-green);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .char-counter {
+            text-align: right;
+            font-size: 0.85rem;
+            color: #999;
+            margin-top: 5px;
+        }
+        
+        .consent-box {
+            background: var(--grey-light);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .consent-label {
+            display: flex;
+            align-items: flex-start;
+            cursor: pointer;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .consent-label input[type="checkbox"] {
+            width: auto;
+            margin-right: 12px;
+            margin-top: 3px;
+            cursor: pointer;
+            transform: scale(1.3);
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--kenya-red) 0%, #8B0000 100%);
+            color: var(--white);
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(187, 0, 0, 0.3);
+        }
+        
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(187, 0, 0, 0.4);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* Success Screen */
+        .success-screen {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .success-screen.active {
+            display: block;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .success-icon {
+            font-size: 5rem;
+            color: var(--kenya-green);
+            margin-bottom: 20px;
+        }
+        
+        .success-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2.5rem;
+            color: var(--kenya-green);
+            margin-bottom: 15px;
+        }
+        
+        .success-message {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: var(--grey-dark);
+        }
+        
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 40px;
+            background: #25D366;
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+        
+        .whatsapp-icon {
+            font-size: 1.5rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+            }
+            50% {
+                transform: scale(1.1) rotate(5deg);
+            }
+        }
+        
+        /* Alert Messages */
+        .alert {
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .alert.show {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .alert-error {
+            background: #FFEBEE;
+            color: #C62828;
+            border-left: 4px solid #C62828;
+        }
+        
+        .alert-success {
+            background: #E8F5E9;
+            color: #2E7D32;
+            border-left: 4px solid #2E7D32;
+        }
+        
+        .alert-info {
+            background: #E3F2FD;
+            color: #1565C0;
+            border-left: 4px solid #1565C0;
+        }
+        
+        /* Loading Spinner */
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid var(--white);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+        
+        .footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="logo-title">JULISHA</h1>
+            <p class="tagline">Voice of 1 Million Kenyans</p>
+        </header>
+        
+        <!-- Live Counter -->
+        <section class="counter-section">
+            <p class="counter-label">Signatures Collected</p>
+            <div class="counter-display" id="voteCounter">0</div>
+            <p class="counter-goal">Target: 1,000,000</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar" style="width: 0%"></div>
+            </div>
+        </section>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Information Card -->
+            <div class="card">
+                <h2 class="card-title">Why We Petition</h2>
+                <ul class="evils-list">
+                    <li>
+                        <span class="evil-title">Youth Unemployment Crisis</span>
+                        67% of unemployed Kenyans are under 35. High education costs with no job opportunities create a lost generation.
+                    </li>
+                    <li>
+                        <span class="evil-title">Over-Taxation Burden</span>
+                        The 2026 Finance Bill introduces regressive taxes on basic necessities while public debt reaches 80% of GDP.
+                    </li>
+                    <li>
+                        <span class="evil-title">Economic Mismanagement</span>
+                        Rising cost of living, currency devaluation, and corruption drain resources meant for development.
+                    </li>
+                    <li>
+                        <span class="evil-title">Broken Social Contract</span>
+                        Leaders elected to serve have instead enriched themselves while citizens suffer.
+                    </li>
+                </ul>
+                
+                <div class="legal-notice">
+                    <strong>Constitutional Basis:</strong> This petition is exercised under Article 37 (Right to Assembly) and Article 257 (Popular Initiative) of the Constitution of Kenya. Your participation is protected speech.
+                </div>
+            </div>
+            
+            <!-- Form Card -->
+            <div class="card form-section">
+                <h2 class="card-title">Add Your Voice</h2>
+                
+                <div id="alertContainer"></div>
+                
+                <!-- Form (Initially Shown) -->
+                <div id="formContainer">
+                    <div class="verification-tabs">
+                        <button class="tab-btn active" onclick="switchTab('id')">Verify by ID</button>
+                        <button class="tab-btn" onclick="switchTab('phone')">Verify by Phone</button>
+                    </div>
+                    
+                    <!-- ID Verification Form -->
+                    <form id="idForm" class="form-content active">
+                        <div class="form-group">
+                            <label for="idNumber">National ID or Passport Number</label>
+                            <input 
+                                type="text" 
+                                id="idNumber" 
+                                placeholder="Enter your ID/Passport number"
+                                required
+                                maxlength="20"
+                            >
+                            <small style="color: #666; font-size: 0.85rem; display: block; margin-top: 5px;">
+                                🔒 Your ID is hashed locally and never stored in plain text
+                            </small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="idCounty">Your County</label>
+                            <select id="idCounty" required>
+                                <option value="">Select your county</option>
+                                <option value="Nairobi">Nairobi</option>
+                                <option value="Mombasa">Mombasa</option>
+                                <option value="Kisumu">Kisumu</option>
+                                <option value="Nakuru">Nakuru</option>
+                                <option value="Kiambu">Kiambu</option>
+                                <option value="Machakos">Machakos</option>
+                                <option value="Kajiado">Kajiado</option>
+                                <option value="Uasin Gishu">Uasin Gishu</option>
+                                <option value="Kilifi">Kilifi</option>
+                                <option value="Kakamega">Kakamega</option>
+                                <option value="Meru">Meru</option>
+                                <option value="Nyeri">Nyeri</option>
+                                <option value="Bungoma">Bungoma</option>
+                                <option value="Kericho">Kericho</option>
+                                <option value="Trans Nzoia">Trans Nzoia</option>
+                                <option value="Murang'a">Murang'a</option>
+                                <option value="Nandi">Nandi</option>
+                                <option value="Embu">Embu</option>
+                                <option value="Kitui">Kitui</option>
+                                <option value="Busia">Busia</option>
+                                <option value="Siaya">Siaya</option>
+                                <option value="Kisii">Kisii</option>
+                                <option value="Laikipia">Laikipia</option>
+                                <option value="Bomet">Bomet</option>
+                                <option value="Kwale">Kwale</option>
+                                <option value="Narok">Narok</option>
+                                <option value="Homa Bay">Homa Bay</option>
+                                <option value="Makueni">Makueni</option>
+                                <option value="Baringo">Baringo</option>
+                                <option value="Kirinyaga">Kirinyaga</option>
+                                <option value="Migori">Migori</option>
+                                <option value="Elgeyo-Marakwet">Elgeyo-Marakwet</option>
+                                <option value="Vihiga">Vihiga</option>
+                                <option value="Nyamira">Nyamira</option>
+                                <option value="Nyandarua">Nyandarua</option>
+                                <option value="Turkana">Turkana</option>
+                                <option value="West Pokot">West Pokot</option>
+                                <option value="Samburu">Samburu</option>
+                                <option value="Tana River">Tana River</option>
+                                <option value="Taita Taveta">Taita Taveta</option>
+                                <option value="Garissa">Garissa</option>
+                                <option value="Wajir">Wajir</option>
+                                <option value="Mandera">Mandera</option>
+                                <option value="Marsabit">Marsabit</option>
+                                <option value="Isiolo">Isiolo</option>
+                                <option value="Lamu">Lamu</option>
+                                <option value="Tharaka-Nithi">Tharaka-Nithi</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="idComment">Your Message (Optional)</label>
+                            <textarea 
+                                id="idComment" 
+                                placeholder="Share why you're signing this petition..."
+                                maxlength="280"
+                                oninput="updateCharCounter('idComment', 'idCharCounter')"
+                            ></textarea>
+                            <div class="char-counter">
+                                <span id="idCharCounter">0</span> / 280
+                            </div>
+                        </div>
+                        
+                        <div class="consent-box">
+                            <label class="consent-label">
+                                <input type="checkbox" id="idConsent" required>
+                                <span>I certify that I am a registered voter in Kenya (18+ years). I voluntarily provide these details for this petition under Article 37 of the Constitution of Kenya.</span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn" id="idSubmitBtn">
+                            Register My Vote
+                        </button>
+                    </form>
+                    
+                    <!-- Phone Verification Form -->
+                    <form id="phoneForm" class="form-content">
+                        <div class="form-group">
+                            <label for="phoneNumber">Phone Number</label>
+                            <input 
+                                type="tel" 
+                                id="phoneNumber" 
+                                placeholder="0712345678 or +254712345678"
+                                required
+                                pattern="^(\+254|0)[17]\d{8}$"
+                            >
+                            <small style="color: #666; font-size: 0.85rem; display: block; margin-top: 5px;">
+                                📱 We'll send you a verification code via SMS
+                            </small>
+                        </div>
+                        
+                        <div class="form-group" id="codeGroup" style="display: none;">
+                            <label for="verificationCode">Verification Code</label>
+                            <input 
+                                type="text" 
+                                id="verificationCode" 
+                                placeholder="Enter 4-digit code"
+                                maxlength="4"
+                                pattern="\d{4}"
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phoneCounty">Your County</label>
+                            <select id="phoneCounty" required>
+                                <option value="">Select your county</option>
+                                <option value="Nairobi">Nairobi</option>
+                                <option value="Mombasa">Mombasa</option>
+                                <option value="Kisumu">Kisumu</option>
+                                <option value="Nakuru">Nakuru</option>
+                                <option value="Kiambu">Kiambu</option>
+                                <option value="Machakos">Machakos</option>
+                                <option value="Kajiado">Kajiado</option>
+                                <option value="Uasin Gishu">Uasin Gishu</option>
+                                <option value="Kilifi">Kilifi</option>
+                                <option value="Kakamega">Kakamega</option>
+                                <option value="Meru">Meru</option>
+                                <option value="Nyeri">Nyeri</option>
+                                <option value="Bungoma">Bungoma</option>
+                                <option value="Kericho">Kericho</option>
+                                <option value="Trans Nzoia">Trans Nzoia</option>
+                                <option value="Murang'a">Murang'a</option>
+                                <option value="Nandi">Nandi</option>
+                                <option value="Embu">Embu</option>
+                                <option value="Kitui">Kitui</option>
+                                <option value="Busia">Busia</option>
+                                <option value="Siaya">Siaya</option>
+                                <option value="Kisii">Kisii</option>
+                                <option value="Laikipia">Laikipia</option>
+                                <option value="Bomet">Bomet</option>
+                                <option value="Kwale">Kwale</option>
+                                <option value="Narok">Narok</option>
+                                <option value="Homa Bay">Homa Bay</option>
+                                <option value="Makueni">Makueni</option>
+                                <option value="Baringo">Baringo</option>
+                                <option value="Kirinyaga">Kirinyaga</option>
+                                <option value="Migori">Migori</option>
+                                <option value="Elgeyo-Marakwet">Elgeyo-Marakwet</option>
+                                <option value="Vihiga">Vihiga</option>
+                                <option value="Nyamira">Nyamira</option>
+                                <option value="Nyandarua">Nyandarua</option>
+                                <option value="Turkana">Turkana</option>
+                                <option value="West Pokot">West Pokot</option>
+                                <option value="Samburu">Samburu</option>
+                                <option value="Tana River">Tana River</option>
+                                <option value="Taita Taveta">Taita Taveta</option>
+                                <option value="Garissa">Garissa</option>
+                                <option value="Wajir">Wajir</option>
+                                <option value="Mandera">Mandera</option>
+                                <option value="Marsabit">Marsabit</option>
+                                <option value="Isiolo">Isiolo</option>
+                                <option value="Lamu">Lamu</option>
+                                <option value="Tharaka-Nithi">Tharaka-Nithi</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phoneComment">Your Message (Optional)</label>
+                            <textarea 
+                                id="phoneComment" 
+                                placeholder="Share why you're signing this petition..."
+                                maxlength="280"
+                                oninput="updateCharCounter('phoneComment', 'phoneCharCounter')"
+                            ></textarea>
+                            <div class="char-counter">
+                                <span id="phoneCharCounter">0</span> / 280
+                            </div>
+                        </div>
+                        
+                        <div class="consent-box">
+                            <label class="consent-label">
+                                <input type="checkbox" id="phoneConsent" required>
+                                <span>I certify that I am a registered voter in Kenya (18+ years). I voluntarily provide these details for this petition under Article 37 of the Constitution of Kenya.</span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn" id="phoneSubmitBtn">
+                            Send Verification Code
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Success Screen (Initially Hidden) -->
+                <div class="success-screen" id="successScreen">
+                    <div class="success-icon">✓</div>
+                    <h3 class="success-title">Your Voice Matters!</h3>
+                    <p class="success-message">
+                        Thank you for joining <strong><span id="successCount">0</span> fellow Kenyans</strong> 
+                        demanding accountability. Share with your network to amplify this movement.
+                    </p>
+                    <a href="#" class="share-btn" id="shareBtn">
+                        <span class="whatsapp-icon">📱</span>
+                        Share on WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <p>
+            © 2026 Julisha Petition | Powered by the People | 
+            <a href="#privacy">Privacy Policy</a> | 
+            <a href="#legal">Legal Notice</a>
+        </p>
+        <p style="margin-top: 10px; font-size: 0.85rem;">
+            This platform does not store personal information. All identifiers are cryptographically hashed.
+        </p>
+    </footer>
+    
+    <!-- Crypto-JS for Client-Side Hashing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    
+    <script src="app.js"></script>
+</body>
+</html>
