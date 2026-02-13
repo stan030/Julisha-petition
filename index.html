@@ -521,58 +521,244 @@
 </head>
 <body>
     <div class="container">
+        <!-- Memorial Ticker -->
+        <div class="memorial-ticker">
+            <div class="ticker-label">🕯️ IN MEMORY:</div>
+            <div class="ticker-content" id="memorialTicker">
+                <div class="ticker-text"></div>
+            </div>
+        </div>
+
         <!-- Header -->
         <header class="header">
-            <h1 class="logo-title">JULISHA</h1>
-            <p class="tagline">Voice of 1 Million Kenyans</p>
+            <h1 class="logo-title">ENOUGH IS ENOUGH!</h1>
+            <div class="main-headline">
+                <div class="headline-big">1 MILLION KENYANS DEMAND:</div>
+                <div class="headline-demands">
+                    REPEAL 2026 TAXES | END THE DEBT TRAP | JOBS FOR YOUTH
+                </div>
+                <div class="headline-action">
+                    WE REJECT THE LOOT. WE DEMAND ACCOUNTABILITY. NOW.
+                </div>
+            </div>
+            <p class="tagline">From Campus to Streets: The Lost Generation Takes Back Kenya</p>
+            <p class="tagline-sub">Anonymous • Secure • Unstoppable</p>
         </header>
         
         <!-- Live Counter -->
         <section class="counter-section">
-            <p class="counter-label">Signatures Collected</p>
+            <p class="counter-label">KENYANS WHO'VE SAID ENOUGH</p>
             <div class="counter-display" id="voteCounter">0</div>
-            <p class="counter-goal">Target: 1,000,000</p>
+            <p class="counter-goal">TARGET: 1,000,000 SIGNATURES</p>
             <div class="progress-bar">
                 <div class="progress-fill" id="progressBar" style="width: 0%"></div>
             </div>
+            
+            <!-- Voter Statistics -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; font-size: 0.9rem; position: relative; z-index: 1;">
+                <div style="text-align: center; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px;">
+                    <div style="opacity: 0.9; margin-bottom: 5px;">Registered Voters (Kenya)</div>
+                    <div style="font-size: 1.8rem; font-weight: 700; color: var(--gold);">22.1M</div>
+                </div>
+                <div style="text-align: center; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px;">
+                    <div style="opacity: 0.9; margin-bottom: 5px;">Our Target</div>
+                    <div style="font-size: 1.8rem; font-weight: 700; color: var(--gold);">4.5%</div>
+                    <div style="font-size: 0.75rem; opacity: 0.8; margin-top: 3px;">(of voting population)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Activity Feed -->
+        <div class="live-feed">
+            <div class="live-indicator">🔴 LIVE</div>
+            <div class="live-text">KENYANS SIGNING RIGHT NOW</div>
+            <div class="live-ticker" id="liveTicker"></div>
+        </div>
+        
+        <!-- Opening Hook -->
+        <section class="hook-section">
+            <div class="hook-card">
+                <h2 class="hook-title">Are You Part of the Lost Generation?</h2>
+                <div class="hook-questions">
+                    <p>✋ Finished your degree but still jobless at 28?</p>
+                    <p>💸 Paying 16% VAT on bread while MPs fly business class to "benchmarking trips"?</p>
+                    <p>📱 Watching your M-Pesa taxed to pay off corrupt loans you never benefited from?</p>
+                </div>
+                <div class="hook-message">
+                    <p><strong>You're not alone.</strong> 67% of unemployed Kenyans are under 35. We're the generation they forgot — the ones paying for their theft while they tell us to "work hard."</p>
+                    <p><strong>But we're done being silent.</strong></p>
+                    <p class="hook-emphasis">This is JULISHA — our petition, our power, our moment.</p>
+                    <p>No leaders. No parties. Just <span style="color: var(--gold); font-weight: 700;">1 MILLION voices</span> demanding what's rightfully ours: A Kenya that works for <strong>US</strong>, not <strong>THEM</strong>.</p>
+                </div>
+            </div>
         </section>
         
-        <!-- Main Content -->
+        <!-- Main Content Grid -->
         <div class="main-content">
-            <!-- Information Card -->
-            <div class="card">
-                <h2 class="card-title">Why We Petition</h2>
-                <ul class="evils-list">
-                    <li>
-                        <span class="evil-title">Youth Unemployment Crisis</span>
-                        67% of unemployed Kenyans are under 35. High education costs with no job opportunities create a lost generation.
-                    </li>
-                    <li>
-                        <span class="evil-title">Over-Taxation Burden</span>
-                        The 2026 Finance Bill introduces regressive taxes on basic necessities while public debt reaches 80% of GDP.
-                    </li>
-                    <li>
-                        <span class="evil-title">Economic Mismanagement</span>
-                        Rising cost of living, currency devaluation, and corruption drain resources meant for development.
-                    </li>
-                    <li>
-                        <span class="evil-title">Broken Social Contract</span>
-                        Leaders elected to serve have instead enriched themselves while citizens suffer.
-                    </li>
-                </ul>
+            <!-- Why We Petition -->
+            <div class="card info-card">
+                <h2 class="card-title">WHY WE PETITION</h2>
+                <div class="section-subtitle">THE CRISIS IS REAL:</div>
                 
-                <div class="legal-notice">
-                    <strong>Constitutional Basis:</strong> This petition is exercised under Article 37 (Right to Assembly) and Article 257 (Popular Initiative) of the Constitution of Kenya. Your participation is protected speech.
+                <div class="crisis-item">
+                    <div class="crisis-icon">💔</div>
+                    <div class="crisis-content">
+                        <h3>YOUTH UNEMPLOYMENT EPIDEMIC</h3>
+                        <ul>
+                            <li>67% of unemployed Kenyans are under 35</li>
+                            <li>Campus graduates selling mitumba, driving boda bodas with degrees</li>
+                            <li>KSh 22,000 "youth jobs" that vanish after 6 months — tokenism, not opportunity</li>
+                            <li>Talent bleeding abroad — our best minds fleeing to survive</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="crisis-item">
+                    <div class="crisis-icon">💸</div>
+                    <div class="crisis-content">
+                        <h3>OVER-TAXATION + DEBT SLAVERY</h3>
+                        <ul>
+                            <li>2026 Finance Bill: New regressive taxes on food, fuel, M-Pesa, medical supplies</li>
+                            <li>Public debt at 80% of GDP — KSh 10.6 TRILLION borrowed, mostly unaccounted for</li>
+                            <li>We pay. They loot. IMF gets rich. Youth get crumbs.</li>
+                            <li>Essential goods taxed while mega-corruption goes unpunished</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="crisis-item">
+                    <div class="crisis-icon">🏛️</div>
+                    <div class="crisis-content">
+                        <h3>SYSTEMIC CORRUPTION & WASTE</h3>
+                        <ul>
+                            <li>Billions "lost" in scandals — from fake fertilizer to ghost projects</li>
+                            <li>First Family expanding offices while hospitals lack medicine</li>
+                            <li>MPs earning KSh 1M+ monthly, pushing youth to "hustling" on KSh 500/day</li>
+                            <li>Foreign trips, luxury cars, fake allowances — spending OUR taxes on THEIR lifestyle</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="crisis-item">
+                    <div class="crisis-icon">⚖️</div>
+                    <div class="crisis-content">
+                        <h3>BROKEN SOCIAL CONTRACT</h3>
+                        <ul>
+                            <li>Leaders promised "Bottom-Up Economics" — we got Bottom-Out Suffering</li>
+                            <li>Gen Z voted for change. We got more of the same.</li>
+                            <li>They fear us on TikTok. They ignore us at State House.</li>
+                            <li><strong>Time to make them LISTEN.</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Demands Section -->
+                <div class="demands-section">
+                    <h2 class="demands-title">OUR DEMANDS</h2>
+                    <div class="demands-subtitle">WE THE PEOPLE DEMAND — NOT ASK:</div>
+                    
+                    <div class="demand-item">
+                        <div class="demand-number">1</div>
+                        <div class="demand-content">
+                            <h3>IMMEDIATE FULL REPEAL OF 2026 FINANCE BILL</h3>
+                            <p>Withdraw ALL regressive taxes on food, fuel, M-Pesa, healthcare. No VAT on essentials. Tax the wealthy, not the hustler.</p>
+                        </div>
+                    </div>
+
+                    <div class="demand-item">
+                        <div class="demand-number">2</div>
+                        <div class="demand-content">
+                            <h3>INDEPENDENT FORENSIC AUDIT OF PUBLIC DEBT</h3>
+                            <p>Full disclosure: Who borrowed? For what? Where did it go? Name and shame corrupt officials — prosecute, recover stolen funds. Public report within 90 days.</p>
+                        </div>
+                    </div>
+
+                    <div class="demand-item">
+                        <div class="demand-number">3</div>
+                        <div class="demand-content">
+                            <h3>REAL YOUTH ECONOMIC EMPOWERMENT</h3>
+                            <p>40% mandatory youth quota in all government jobs and contracts. KSh 50 billion Youth Enterprise Fund with ZERO corruption. Support startups, tech hubs, agribusiness — not handouts, but hand-ups.</p>
+                        </div>
+                    </div>
+
+                    <div class="demand-item">
+                        <div class="demand-number">4</div>
+                        <div class="demand-content">
+                            <h3>END WASTEFUL GOVERNMENT SPENDING</h3>
+                            <p>Freeze non-essential foreign trips. Cap MP salaries at 10x minimum wage. No new vanity projects. Redirect savings to hospitals, schools, roads.</p>
+                        </div>
+                    </div>
+
+                    <div class="demand-item">
+                        <div class="demand-number">5</div>
+                        <div class="demand-content">
+                            <h3>TRANSPARENCY & ACCOUNTABILITY LAWS</h3>
+                            <p>Public asset declaration for ALL officials. Real-time spending portal. Strengthen EACC. Protect whistleblowers.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Escalation Plan -->
+                <div class="escalation-section">
+                    <h2 class="escalation-title">WHAT HAPPENS NEXT</h2>
+                    <div class="escalation-subtitle">WE START HERE. WE DON'T STOP UNTIL THEY LISTEN.</div>
+                    
+                    <div class="milestone">
+                        <div class="milestone-marker">✅ AT 100,000</div>
+                        <ul>
+                            <li>Mass media handover to newsrooms (Citizen, NTV, KTN)</li>
+                            <li>Tag every MP, Senator, Governor — make them respond</li>
+                            <li>Viral #Julisha100K campaign — national conversation starts</li>
+                        </ul>
+                    </div>
+
+                    <div class="milestone">
+                        <div class="milestone-marker">✅ AT 500,000</div>
+                        <ul>
+                            <li>Coordinated county deliveries to every governor's office</li>
+                            <li>Town hall assemblies in 10 cities — peaceful, public, LOUD</li>
+                            <li>International media outreach — let the world see</li>
+                            <li>Legal team prepares constitutional petition (Article 257)</li>
+                        </ul>
+                    </div>
+
+                    <div class="milestone">
+                        <div class="milestone-marker">✅ AT 1 MILLION</div>
+                        <ul>
+                            <li>Official IEBC handover — undeniable people's mandate</li>
+                            <li>If ignored: <strong>Nationwide #JulishaMaandamano</strong> (peaceful mass action)</li>
+                            <li>Constitutional Court case — public interest litigation</li>
+                            <li><strong>Your voices WILL be heard. They CANNOT ignore 1 million.</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="movement-declaration">
+                        <p>This isn't just a petition. It's a <strong>MOVEMENT</strong>.</p>
+                        <p>From TikTok to the streets. From Kibera to Karen. From campus to boardrooms.</p>
+                        <p class="declaration-emphasis">We are the 1 Million. We are JULISHA. We are Kenya's future — and we're TAKING IT BACK.</p>
+                    </div>
                 </div>
             </div>
             
-            <!-- Form Card -->
+            <!-- Form Section -->
             <div class="card form-section">
-                <h2 class="card-title">Add Your Voice</h2>
+                <h2 class="card-title cta-title">🔥 ADD MY VOICE NOW 🔥</h2>
+                
+                <div class="cta-badges">
+                    <span class="badge">✅ 100% Anonymous</span>
+                    <span class="badge">✅ Privacy-First</span>
+                    <span class="badge">✅ Secure</span>
+                </div>
+
+                <div class="cta-subtitle">
+                    JOIN <span id="ctaCount" style="color: var(--gold); font-weight: 700;">0</span> KENYANS WHO'VE ALREADY SIGNED
+                </div>
+
+                <div class="cta-time">It takes 30 seconds. It changes everything.</div>
                 
                 <div id="alertContainer"></div>
                 
-                <!-- Form (Initially Shown) -->
+                <!-- Form Container -->
                 <div id="formContainer">
                     <div class="verification-tabs">
                         <button class="tab-btn active" onclick="switchTab('id')">Verify by ID</button>
@@ -650,10 +836,10 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="idComment">Your Message (Optional)</label>
+                            <label for="idComment">Why Are You Signing? (Optional)</label>
                             <textarea 
                                 id="idComment" 
-                                placeholder="Share why you're signing this petition..."
+                                placeholder="Share your story... Why is this important to you?"
                                 maxlength="280"
                                 oninput="updateCharCounter('idComment', 'idCharCounter')"
                             ></textarea>
@@ -670,11 +856,11 @@
                         </div>
                         
                         <button type="submit" class="submit-btn" id="idSubmitBtn">
-                            Register My Vote
+                            🔥 REGISTER MY VOTE - I'VE HAD ENOUGH 🔥
                         </button>
                     </form>
                     
-                    <!-- Phone Verification Form -->
+                    <!-- Phone Form (keep existing) -->
                     <form id="phoneForm" class="form-content">
                         <div class="form-group">
                             <label for="phoneNumber">Phone Number</label>
@@ -756,10 +942,10 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="phoneComment">Your Message (Optional)</label>
+                            <label for="phoneComment">Why Are You Signing? (Optional)</label>
                             <textarea 
                                 id="phoneComment" 
-                                placeholder="Share why you're signing this petition..."
+                                placeholder="Share your story..."
                                 maxlength="280"
                                 oninput="updateCharCounter('phoneComment', 'phoneCharCounter')"
                             ></textarea>
@@ -781,24 +967,92 @@
                     </form>
                 </div>
                 
-                <!-- Success Screen (Initially Hidden) -->
+                <!-- Success Screen -->
                 <div class="success-screen" id="successScreen">
                     <div class="success-icon">✓</div>
-                    <h3 class="success-title">Your Voice Matters!</h3>
+                    <h3 class="success-title">YOU'RE IN! YOU'RE SIGNATURE #<span id="successCount">0</span></h3>
                     <p class="success-message">
-                        Thank you for joining <strong><span id="successCount">0</span> fellow Kenyans</strong> 
-                        demanding accountability. Share with your network to amplify this movement.
+                        You just joined the most powerful youth movement in Kenya's history.
+                    </p>
+                    <p class="success-emphasis">
+                        Now multiply your impact — share JULISHA with 10 friends:
                     </p>
                     <a href="#" class="share-btn" id="shareBtn">
                         <span class="whatsapp-icon">📱</span>
-                        Share on WhatsApp
+                        SHARE ON WHATSAPP
                     </a>
+                    <div class="hashtags">
+                        #Julisha1M | #Reject2026Taxes | #EnoughIsEnough<br>
+                        #YouthUnemployedKE | #RutoMustAccount | #DebtTrapKE
+                    </div>
+                    <div class="share-impact">
+                        🇰🇪 THE MORE WE SHARE, THE FASTER WE WIN 🇰🇪
+                    </div>
+                </div>
+
+                <!-- Privacy Note -->
+                <div class="privacy-note">
+                    <h3>🔒 WHY YOUR PRIVACY IS PROTECTED:</h3>
+                    <ul class="privacy-list">
+                        <li>✅ Your ID is hashed in YOUR browser before sending</li>
+                        <li>✅ We NEVER see your actual ID number</li>
+                        <li>✅ Even if hacked, they get gibberish — not your identity</li>
+                        <li>✅ No IP addresses stored. No tracking. No surveillance.</li>
+                        <li>✅ Data Protection Act 2019 compliant</li>
+                    </ul>
+                    <p class="privacy-emphasis">Sign freely. Your identity is YOURS. Your voice is OURS.</p>
                 </div>
             </div>
         </div>
     </div>
     
     <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-banner">
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+                <div class="banner-text">"THIS IS MY HOMELAND AND I SHALL FIGHT FOR IT"</div>
+                <div class="banner-subtitle">— KENYAN YOUTH, 2026</div>
+            </div>
+        </div>
+        
+        <div class="footer-manifesto">
+            <p><strong>We're not asking for permission.</strong><br>
+            We're not waiting for saviors.<br>
+            We're not backing down.</p>
+            
+            <p class="manifesto-big">1 Million signatures.<br>
+            1 unified demand.<br>
+            1 generation that REFUSES to be forgotten.</p>
+            
+            <p><strong>FROM EVERY COUNTY. EVERY TRIBE. EVERY HUSTLE.</strong><br>
+            WE ARE JULISHA. WE ARE KENYA. WE ARE THE FUTURE.</p>
+            
+            <p class="manifesto-now">AND THE FUTURE STARTS NOW.</p>
+        </div>
+        
+        <div class="footer-links">
+            <p style="margin-bottom: 10px;">
+                Powered by the people | No politicians | No NGOs | Just us
+            </p>
+            <p style="font-size: 0.9rem; opacity: 0.9;">
+                Privacy-first | Encrypted | Anonymous | Unstoppable
+            </p>
+            <p style="margin-top: 20px;">
+                <a href="#privacy">Privacy Policy</a> | 
+                <a href="#legal">Legal Notice</a> | 
+                <a href="#contact">Contact</a>
+            </p>
+            <p style="margin-top: 15px; font-size: 0.85rem; opacity: 0.8;">
+                © 2026 Julisha Movement | Article 37 & 257 Protected Speech
+            </p>
+        </div>
+    </footer>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="app.js"></script>
+</body>                   
+   <!-- Footer -->
     <footer class="footer">
         <p>
             © 2026 Julisha Petition | Powered by the People | 
