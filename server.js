@@ -20,7 +20,63 @@ const pool = new Pool({
 });
 
 // Middleware
-app.use(cors());
+app.use(cors({
+       origin: ['https://julisha-petition.vercel.app'],
+       credentials: true
+   }));
+```
+   (Use YOUR Vercel URL!)
+6. Tap **"Commit changes"**
+
+### 5.2 Redeploy Backend
+1. Go to Render app
+2. Tap on your `julisha-api` service
+3. Tap **"Manual Deploy"** → **"Deploy latest commit"**
+4. ⏳ Wait 3 minutes
+
+---
+
+## **STEP 6: Test Everything!** (5 min)
+
+### 6.1 Visit Your Site
+1. Open: `https://julisha-petition.vercel.app` (your URL)
+2. ✅ Page should load beautifully
+3. ✅ Counter shows: "0 / 1,000,000"
+
+### 6.2 Submit a Test Vote
+1. Tap **"Verify by ID"**
+2. Enter test ID: `12345678`
+3. Select County: **"Nairobi"**
+4. Check consent box
+5. Tap **"Register My Vote"**
+6. ✅ Should see success screen!
+7. ✅ Counter updates to "1"!
+8. ✅ WhatsApp share button appears
+
+### 6.3 Test Admin Dashboard
+1. Visit: `https://julisha-petition.vercel.app/admin.html`
+2. Enter the `ADMIN_SECRET` you saved earlier
+3. Tap **"Access Dashboard"**
+4. ✅ Should see vote statistics!
+
+---
+
+## **STEP 7: Share Your Platform!** 🚀
+
+### WhatsApp Message:
+```
+🇰🇪 Habari! 
+
+I've created a petition platform for Kenyans to demand accountability.
+
+✅ 100% Private (no data stored)
+✅ Takes 30 seconds to sign
+✅ Constitutional right (Article 257)
+
+Sign here:
+https://julisha-petition.vercel.app
+
+Share with your networks! 🙏;
 app.use(express.json());
 
 // Rate Limiting (Prevent Spam/DDoS)
